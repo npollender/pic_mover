@@ -10,7 +10,8 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 public class Main {
 
-    public static final String[] extensions = {".jpg", ".jpeg", ".gif", ".png", ".mp4", ".mov", ".wmv", ".avi", ".flv", ".mkv"};
+    public static final String[] extensions = {".jpg", ".jpeg", ".gif", ".png", ".mp4", ".mov", ".wmv", ".avi", ".flv", ".mkv",
+                                               ".JPG", ".JPEG", ".GIF", ".PNG", ".MP4", ".MOV", ".WMV", ".AVI", ".FLV", ".MKV"};
     public static int fileCtr = 0;
 
     public static void main(String[] args) throws InterruptedException {
@@ -62,7 +63,7 @@ public class Main {
 
     public static void moveFiles(ArrayList<File> dirs, File dest) {
         for (int i = 0; i < dirs.size(); i++) {
-            if (dirs.get(i).toString().contains("dest")) {
+            if (dirs.get(i).toString().equals(dest.toString())) {
                 continue;
             }
             try {
@@ -75,6 +76,7 @@ public class Main {
                             File fileDest = new File(dest.toString() + getFileName(files.get(j)));
                             Files.copy(files.get(j).toPath(), fileDest.toPath(), REPLACE_EXISTING);
                             fileCtr++;
+                            break;
                         }
                     }
                 }
